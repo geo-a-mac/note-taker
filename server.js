@@ -24,8 +24,9 @@ const createNewNote = (body) => {
     newNote.title = body.title;
     newNote.text = body.text;
     newNote.id = id;
+    //add to existing notes
     curNotes.push(newNote);
-    console.log(curNotes);
+    //write all notes to file
     fs.writeFileSync(
         path.join(__dirname, './db/db.json'), 
         JSON.stringify(curNotes, null, 2));
@@ -35,8 +36,6 @@ const createNewNote = (body) => {
 // GET /api/notes returns notes.json as json
 app.get('/api/notes', (req, res) =>{
     let results = notes;
-    //console.log('get /api/notes called');
-    //console.log(results);
     res.json(results);
 });
 
